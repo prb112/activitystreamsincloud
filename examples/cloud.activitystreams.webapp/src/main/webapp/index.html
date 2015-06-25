@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 
+
+ /*
+* © Copyright IBM Corp. 2015
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at:
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+* implied. See the License for the specific language governing
+* permissions and limitations under the License.
+*/
+	 -->
+<meta charset="ISO-8859-1">
+<title>IBM Connections Cloud - ActivityStreams in Cloud Example</title>
+<script type="text/javascript">
+
+/**
+ * the utility that receives the published message
+ */
+
+/**
+ * added to the onload of the body element it adds the event listener that takes
+ * a message from any pubsub producer.
+ */
+function loadMessages() {
+	window.addEventListener("message", receiveMessage, false);
+}
+
+/**
+ * processes the events from the pubsub
+ * 
+ * @param event
+ */
+function receiveMessage(event) {
+	console.log("event received: " + event.origin);
+	
+	if (event.origin == "https://apps.collabservnext.com") {
+		console.log("Event Data: " + event.data);
+		
+		//var jsonObj = JSON.parse(event.data);
+		
+		console.log(event.data);
+		document.getElementById('context').innerHTML = event.data; //event.data.context; 
+
+	} else {
+		console.log("Event from Unsupported Domain " + event.origin);
+	}
+
+}
+
+</script>
+</head>
+<body onLoad="loadMessages()">
+
+Context<br/>
+<div id="context" >
+</div>
+</body>
+</html>
