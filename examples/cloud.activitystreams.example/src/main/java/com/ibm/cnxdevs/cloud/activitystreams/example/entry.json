@@ -1,0 +1,42 @@
+{
+	"generator": {
+		"id": "demoApp2", 
+		"displayName": "demo", 
+		"url": "http://www.ibm.com/"
+	}, 
+	"actor": {
+		"id": "@me"
+	}, 
+	"verb": "post", 
+	"title": "00000", 
+	"content": "Embedded Experience posted from Bootstrap Page", 
+	"object": {
+		"summary": "Bootstrap EEa", 
+		"objectType": "notea", 
+		"id": "bootstrapEEa", 
+		"displayName": "Bootstrap EE", 
+		"url": "http://www.ibm.com/"
+	}, 
+	"target": {
+		"summary": "Bootstrap EE a", 
+		"objectType": "Bootstrap EEa", 
+		"id": "bootstrapEEa", 
+		"displayName": "bootstrapEEs", 
+		"url": "http://www.ibm.com/"
+	}, 
+	"openSocial": {
+		"embed": {
+			"gadget": "${GADGET}", 
+			"context": {
+				'should not': 'be empty', 
+				"url" : "${URL}", 
+				"debug" : true,
+				"height" : 1024
+			}
+		}
+	}, 
+	"connections": {
+		"rollupid": "bootstrapEE1416967496266abscdss",
+		"broadcast" : "true"
+	}
+}
