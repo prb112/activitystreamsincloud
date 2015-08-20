@@ -3,7 +3,9 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/servlets"/>
         <property name="java-output-path" value="/cloud.activitystreams.webapp/target/classes"/>
-        <property name="context-root" value="example"/>
+        <property name="context-root" value="cloud.activitystreams.webapp"/>
     </wb-module>
 </project-modules>

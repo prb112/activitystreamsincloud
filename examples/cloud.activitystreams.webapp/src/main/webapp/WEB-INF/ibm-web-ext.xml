@@ -24,7 +24,7 @@
 	version="1.0">
 
 	<reload-interval value="3"/>
-	<context-root uri="example" />
+	<context-root uri="cloud.activitystreams.webapp" />
 	<enable-directory-browsing value="false"/>
 	<enable-file-serving value="true"/>
 	<enable-reloading value="true"/>

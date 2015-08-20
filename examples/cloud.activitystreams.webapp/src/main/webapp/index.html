@@ -2,8 +2,7 @@
 <html>
 <head>
 <!-- 
-
- /*
+/*
 * © Copyright IBM Corp. 2015
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +17,7 @@
 * implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
-	 -->
+-->
 <meta charset="ISO-8859-1">
 <title>IBM Connections Cloud - ActivityStreams in Cloud Example</title>
 <script type="text/javascript">
@@ -36,14 +35,17 @@ function loadMessages() {
 }
 
 /**
- * processes the events from the pubsub
+ * processes the events from the parent window's postMessage
  * 
  * @param event
  */
 function receiveMessage(event) {
 	console.log("event received: " + event.origin);
 	
-	if (event.origin == "https://apps.collabservnext.com") {
+	/*
+	 * The origin should match the collabserv.com apps domain.  
+	 */
+	if (event.origin == "https://apps.basesandbox34.swg.usma.ibm.com") {
 		console.log("Event Data: " + event.data);
 		
 		//var jsonObj = JSON.parse(event.data);
@@ -57,12 +59,55 @@ function receiveMessage(event) {
 
 }
 
+/**
+ * example shows communicating data to the Third Party via get
+ */
+function getThirdPartyData(){
+	console.log("domain = " + document.domain);
+	//document.domain = "localhost";
+		
+	var req = new XMLHttpRequest();
+	req.withCredentials = true;
+	
+	// on error event
+	req.onerror = function(e){
+		var res = document.getElementById('alert');
+		res.innerHTML = "error accessing third party data";
+		console.log(e);
+	} 
+	
+	// on ready state change
+	req.onreadystatechange = function()
+	{
+		if(req.readyState==4 && req.status==200){
+			var res = document.getElementById('alert');
+			res.innerHTML = req.responseText;
+		}
+	};
+	req.open("GET", "https://localhost:9443/cloud.activitystreams.webapp/DataServlet", true);
+	req.send();
+}
+
+function sendApplicationReady(){
+	
+	 var message = "applicationReady";
+
+     window.parent.postMessage(message, "*");
+     console.log("here");
+}
+
 </script>
 </head>
 <body onLoad="loadMessages()">
-
-Context<br/>
+<hr><b>IBM Connections Cloud - Activity Streams in Cloud - Example</b><hr/>
+<hr></hr>
+<input type="button" value="Send Application Ready" onClick="sendApplicationReady()"></input><br/>
+<br/>
 <div id="context" >
 </div>
+<input type="button" value="Test Call to Third Party Data" onClick="getThirdPartyData()"></input><br/>
+<hr><span id="alert"></span></hr>
+<b>Context:</b> <p/>
+
 </body>
 </html>
