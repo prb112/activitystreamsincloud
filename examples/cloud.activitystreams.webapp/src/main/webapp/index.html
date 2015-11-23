@@ -88,12 +88,30 @@ function getThirdPartyData(){
 	req.send();
 }
 
+
 function sendApplicationReady(){
 	
-	 var message = "applicationReady";
+   var message = { command : "applicationReady" };
+   window.parent.postMessage(message, "*");
+   console.log("here");
+}
 
-     window.parent.postMessage(message, "*");
-     console.log("here");
+/**
+* send adjust height 
+*/
+function adjustHeight(height){
+	var message = "adjustHeight";
+	var payload = { command : "adjustHeight", height : height };
+	window.parent.postMessage(payload, "*");
+}
+
+/**
+* send adjust width 
+*/
+function adjustWidth(width){
+	var message = "adjustWidth";
+	var payload = { command : "adjustWidth", width : width };
+	window.parent.postMessage(payload, "*");
 }
 
 </script>
@@ -102,6 +120,10 @@ function sendApplicationReady(){
 <hr><b>IBM Connections Cloud - Activity Streams in Cloud - Example</b><hr/>
 <hr></hr>
 <input type="button" value="Send Application Ready" onClick="sendApplicationReady()"></input><br/>
+<br/>
+<input type="button" value="Adjust Height" onClick="adjustHeight(500)"></input><br/>
+<br/>
+<input type="button" value="Adjust Width" onClick="adjustWidth(500)"></input><br/>
 <br/>
 <div id="context" >
 </div>
